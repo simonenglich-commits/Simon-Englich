@@ -1,0 +1,693 @@
+/* Dealmaker Podcast — Sendestudio in Gold und Schwarz */
+
+/* ---------- Schriften, self-hosted ---------- */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("fonts/switzer-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("fonts/switzer-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Martian Mono";
+  src: url("fonts/martianmono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallbacks mit angeglichenen Metriken gegen Layoutsprung */
+@font-face {
+  font-family: "Archivo Fallback";
+  src: local("Arial"), local("Helvetica Neue");
+  size-adjust: 119.6%;
+  ascent-override: 73.4%;
+  descent-override: 17.6%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Switzer Fallback";
+  src: local("Arial"), local("Helvetica Neue");
+  size-adjust: 101.1%;
+  ascent-override: 96.9%;
+  descent-override: 24.7%;
+  line-gap-override: 8.9%;
+}
+@font-face {
+  font-family: "Martian Mono Fallback";
+  src: local("Courier New"), local("Courier");
+  size-adjust: 108.3%;
+  ascent-override: 92.3%;
+  descent-override: 18.5%;
+  line-gap-override: 0%;
+}
+
+/* ---------- Tokens ---------- */
+
+:root {
+  --schwarz: #0C0A07;          /* warm getönt, Farbton 36°, nie #000 */
+  --schwarz-erhoeht: #14110C;
+  --schwarz-linie: #2E2718;
+  --gold: #C9A66B;             /* ruhend, 8.6:1 auf --schwarz */
+  --gold-hell: #D9C196;        /* aktiv, 11.3:1 */
+  --weiss: #E8E6E1;            /* Fließtext, 15.9:1 */
+  --weiss-gedimmt: #9C968C;    /* Sekundärtext, 6.7:1 */
+
+  --schrift-display: "Archivo", "Archivo Fallback", Arial, sans-serif;
+  --schrift-text: "Switzer", "Switzer Fallback", Arial, sans-serif;
+  --schrift-mono: "Martian Mono", "Martian Mono Fallback", "Courier New", monospace;
+
+  --naht-x: 24px;
+  --naht-staerke: 1.5px;
+}
+
+/* ---------- Grund ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--schwarz);
+  color: var(--weiss);
+  font-family: var(--schrift-text);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  font-family: var(--schrift-display);
+  font-weight: 700;
+  color: var(--weiss);
+}
+
+h1 {
+  font-size: clamp(2.75rem, 13vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: clamp(1.625rem, 6vw, 2.25rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+h3 {
+  font-size: clamp(1.375rem, 5vw, 1.75rem);
+  line-height: 1.1;
+}
+
+p {
+  max-width: 62ch;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--gold);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-hell);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--schrift-mono);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.label {
+  color: var(--gold);
+}
+
+.gedimmt {
+  color: var(--weiss-gedimmt);
+}
+
+/* ---------- Naht und Sektionen ---------- */
+
+.seg {
+  position: relative;
+  padding: 56px 20px 56px 48px;
+}
+
+.seg + .seg,
+main > .seg:first-child {
+  border-top: 1px solid var(--schwarz-linie);
+}
+
+.naht {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--naht-x);
+  width: var(--naht-staerke);
+  background: var(--gold);
+  pointer-events: none;
+}
+
+.naht-hero {
+  transform-origin: top center;
+  animation: naht-ziehen 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes naht-ziehen {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 28px;
+  padding-bottom: 32px;
+}
+
+.sendung {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold);
+}
+
+.licht {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold-hell);
+  flex: none;
+  opacity: 0;
+  animation: licht-puls 3s ease-in-out 0.3s infinite;
+}
+
+@keyframes licht-puls {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+.hero h1 {
+  margin-top: 18px;
+}
+
+.hero-text {
+  margin-top: 18px;
+}
+
+.statzeile {
+  margin-top: 16px;
+  color: var(--weiss-gedimmt);
+}
+
+/* ---------- Plattform-Links ---------- */
+
+.plattformen {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.hero .plattformen {
+  margin-top: 24px;
+}
+
+.plattform {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 60px;
+  padding: 0 16px;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--weiss);
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.plattform:hover,
+.plattform:active {
+  border-color: var(--gold-hell);
+  background: var(--schwarz-erhoeht);
+}
+
+.plattform .icon {
+  flex: none;
+}
+
+.plattform .pfeil {
+  margin-left: auto;
+  flex: none;
+  color: var(--gold);
+}
+
+.hero .plattform {
+  opacity: 0;
+  animation: einblenden 0.4s ease-out forwards;
+}
+
+.hero .plattformen li:nth-child(1) .plattform { animation-delay: 0.15s; }
+.hero .plattformen li:nth-child(2) .plattform { animation-delay: 0.21s; }
+.hero .plattformen li:nth-child(3) .plattform { animation-delay: 0.27s; }
+
+@keyframes einblenden {
+  to { opacity: 1; }
+}
+
+/* ---------- Der Podcast ---------- */
+
+.themen-label {
+  margin-top: 32px;
+}
+
+.themen {
+  list-style: none;
+  margin-top: 10px;
+  max-width: 62ch;
+}
+
+.themen li {
+  padding: 14px 0;
+  border-top: 1px solid var(--schwarz-linie);
+}
+
+.themen li:last-child {
+  border-bottom: 1px solid var(--schwarz-linie);
+}
+
+.embed {
+  margin-top: 32px;
+  height: 352px;
+  max-width: 62ch;
+  border: 1px solid var(--schwarz-linie);
+  border-radius: 2px;
+}
+
+.embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 2px;
+}
+
+.embed-platzhalter {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 24px;
+}
+
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--weiss);
+  font-family: var(--schrift-text);
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.knopf:hover,
+.knopf:active {
+  border-color: var(--gold-hell);
+  background: var(--schwarz-erhoeht);
+}
+
+.hinweis {
+  font-size: 15px;
+  color: var(--weiss-gedimmt);
+}
+
+/* ---------- Die zwei ---------- */
+
+.person {
+  margin-top: 40px;
+}
+
+.person img {
+  width: 100%;
+  border-radius: 2px;
+}
+
+.person .label {
+  margin-top: 20px;
+}
+
+.person h3 {
+  margin-top: 6px;
+}
+
+.rolle {
+  color: var(--weiss-gedimmt);
+  margin-top: 4px;
+}
+
+.person .bio {
+  margin-top: 14px;
+}
+
+.zahlen {
+  list-style: none;
+  margin-top: 18px;
+  color: var(--weiss);
+}
+
+.zahlen li {
+  padding: 5px 0;
+}
+
+.zitat {
+  font-family: var(--schrift-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  line-height: 1.05;
+  color: var(--gold);
+  margin-top: 24px;
+}
+
+.ig {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 12px;
+  color: var(--gold);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.ig:hover {
+  color: var(--gold-hell);
+  text-decoration: underline;
+}
+
+.seite {
+  margin-top: 4px;
+}
+
+/* ---------- Acht Jahre: die Verzweigung ---------- */
+
+.seg-acht .inhalt {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.naht-verzweigung {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--naht-x) + var(--naht-staerke) / 2);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.naht-teil {
+  flex: 1;
+  width: var(--naht-staerke);
+  background: var(--gold);
+}
+
+.verzweigung {
+  display: block;
+  flex: none;
+}
+
+.verzweigung-desktop {
+  display: none;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  border-top: 1px solid var(--schwarz-linie);
+  padding: 32px 20px 40px 48px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 28px;
+}
+
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--gold);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--gold-hell);
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--weiss-gedimmt);
+}
+
+/* ---------- Unterseiten (Impressum, Datenschutz) ---------- */
+
+.unterseite .seg {
+  min-height: 100vh;
+  padding-top: 28px;
+}
+
+.zurueck {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--gold);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.zurueck:hover {
+  color: var(--gold-hell);
+  text-decoration: underline;
+}
+
+.unterseite h1 {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  margin-top: 16px;
+}
+
+.unterseite h2 {
+  font-size: 1.25rem;
+  margin-top: 36px;
+}
+
+.unterseite p {
+  margin-top: 12px;
+}
+
+.rechtsliste {
+  margin-top: 20px;
+  max-width: 62ch;
+}
+
+.rechtsliste > div {
+  padding: 12px 0;
+  border-top: 1px solid var(--schwarz-linie);
+}
+
+.rechtsliste > div:last-child {
+  border-bottom: 1px solid var(--schwarz-linie);
+}
+
+.rechtsliste dt {
+  font-family: var(--schrift-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--weiss-gedimmt);
+}
+
+.rechtsliste dd {
+  margin-top: 4px;
+}
+
+.stand {
+  margin-top: 36px;
+  font-size: 15px;
+  color: var(--weiss-gedimmt);
+}
+
+/* ---------- Desktop: die Naht wird zur Achse ---------- */
+
+@media (min-width: 1024px) {
+  :root {
+    --naht-staerke: 1px;
+  }
+
+  .naht {
+    left: 50%;
+    margin-left: -0.5px;
+  }
+
+  .naht-verzweigung {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .verzweigung-mobil {
+    display: none;
+  }
+
+  .verzweigung-desktop {
+    display: block;
+  }
+
+  .seg {
+    padding: 80px 0;
+  }
+
+  footer {
+    padding: 36px 0 44px;
+  }
+
+  .inhalt,
+  .footer-inhalt {
+    max-width: 1120px;
+    margin-inline: auto;
+    padding-inline: 40px;
+  }
+
+  .seg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 160px;
+    row-gap: 0;
+  }
+
+  .spalte-voll {
+    grid-column: 1 / -1;
+  }
+
+  .hero {
+    padding-top: 0;
+    padding-bottom: 0;
+    justify-content: center;
+  }
+
+  .hero .seg-grid {
+    align-items: center;
+  }
+
+  .hero .plattformen {
+    margin-top: 0;
+  }
+
+  .person {
+    margin-top: 48px;
+  }
+
+  .seg-acht .inhalt {
+    min-height: 460px;
+  }
+
+  .footer-inhalt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .copyright {
+    margin-top: 0;
+  }
+
+  /* Unterseiten behalten die Naht auf der 24px-Schiene */
+  .unterseite .naht {
+    left: var(--naht-x);
+    margin-left: 0;
+  }
+
+  .unterseite .seg {
+    padding: 48px 40px 64px 72px;
+  }
+
+  .unterseite .inhalt {
+    max-width: 720px;
+    margin-left: 0;
+    padding-inline: 0;
+  }
+}
+
+/* ---------- Reduzierte Bewegung: Endzustand sofort ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .naht-hero,
+  .licht,
+  .hero .plattform {
+    animation: none;
+  }
+
+  .licht,
+  .hero .plattform {
+    opacity: 1;
+  }
+}
