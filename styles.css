@@ -646,6 +646,8 @@ footer {
 
   .seg-acht .inhalt {
     min-height: 460px;
+    display: grid;
+    align-content: center;
   }
 
   .footer-inhalt {

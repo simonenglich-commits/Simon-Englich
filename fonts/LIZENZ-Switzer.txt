@@ -1,0 +1,15 @@
+Switzer
+Entworfen von Jérémie Hornus und Team, veröffentlicht von der Indian Type Foundry (ITF) über Fontshare.
+
+Lizenz: ITF Free Font License (ITF FFL)
+Lizenztext: https://www.fontshare.com/licenses/itf-ffl
+Quelle: https://www.fontshare.com/fonts/switzer
+
+Die ITF Free Font License erlaubt die kostenlose Nutzung in privaten und
+kommerziellen Projekten, einschließlich Self-Hosting als Webfont. Die
+Schrift darf nicht eigenständig verkauft oder unter anderem Namen
+weitervertrieben werden. Maßgeblich ist der Lizenztext unter der oben
+genannten Adresse.
+
+Die Dateien switzer-400.woff2 und switzer-500.woff2 sind auf den
+lateinischen Zeichensatz subsettete Web-Schnitte für diese Website.

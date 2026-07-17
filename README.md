@@ -31,6 +31,6 @@ Self-hosted, latin subsettet, keine Requests an Google Fonts.
 
 - **Archivo** (SIL Open Font License, siehe `fonts/OFL-Archivo.txt`)
 - **Martian Mono** (SIL Open Font License, siehe `fonts/OFL-MartianMono.txt`)
-- **Switzer** von der Indian Type Foundry, lizenziert unter der [ITF Free Font License](https://www.fontshare.com/licenses/itf-ffl) via Fontshare
+- **Switzer** von der Indian Type Foundry, lizenziert unter der [ITF Free Font License](https://www.fontshare.com/licenses/itf-ffl) via Fontshare, siehe `fonts/LIZENZ-Switzer.txt`
 
 Hinweis: Switzer liegt als zwei statische Schnitte (400/500) statt einer Variable vor. Der Versuch, aus den Fontshare-Schnitten eine Variable zu bauen, erzeugte inkompatible Konturen; zwei saubere Statics (9,3 kB + 11,2 kB) rendern identisch.
