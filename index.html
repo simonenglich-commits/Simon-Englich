@@ -27,6 +27,7 @@
   <link rel="preload" href="fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/switzer-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add("js")</script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -38,7 +39,7 @@
         <p class="mono sendung"><span class="licht" aria-hidden="true"></span>Auf Sendung</p>
         <h1>Dealmaker Podcast</h1>
         <p class="hero-text">Der Shortcut zu Business, Finanzen und persönlichem Wachstum. Ohne Gelaber, mit Klartext.</p>
-        <p class="mono statzeile">43+ Folgen · Ø 37 Min</p>
+        <p class="mono statzeile">Neue Folgen mehrmals pro Woche</p>
       </div>
       <div class="spalte">
         <ul class="plattformen" role="list">
@@ -80,19 +81,16 @@
       <span class="naht" aria-hidden="true"></span>
       <div class="inhalt seg-grid">
         <div class="spalte">
-          <h2 id="h-podcast">Der Podcast</h2>
-          <p class="hero-text">Systeme, die Geld einbringen. Mindset, Sales und Weiterbildung, als Video-Podcast. Mehrere Folgen pro Woche, im Schnitt 37 Minuten, seit Anfang 2026.</p>
+          <h2 id="h-podcast" data-reveal>Der Podcast</h2>
+          <p class="hero-text" data-reveal>Systeme, die Geld einbringen. Mindset, Sales und Weiterbildung, als Video-Podcast.</p>
         </div>
         <div class="spalte">
-          <p class="mono label themen-label">Wiederkehrende Themen</p>
-          <ul class="themen" role="list">
-            <li>Millionen-Deals und wie sie zustande kommen</li>
-            <li>Umsatz als Tabuthema im DACH-Raum</li>
-            <li>KI als aktuell größte Chance</li>
-            <li>Community-Fragen ohne Filter</li>
-            <li>Kritik und Hate offen beantwortet</li>
+          <ul class="themen daten" role="list" data-reveal>
+            <li>8 Jahre gemeinsame Erfahrung</li>
+            <li>Im Schnitt 37 Minuten pro Folge</li>
+            <li>Seit Anfang 2026</li>
           </ul>
-          <div class="embed" id="spotify-embed">
+          <div class="embed" id="spotify-embed" data-reveal>
             <div class="embed-platzhalter">
               <button type="button" class="knopf" id="spotify-laden">Folgen anhören</button>
               <p class="hinweis">Beim Laden werden Daten an Spotify übertragen.</p>
@@ -105,13 +103,15 @@
     <section class="seg" aria-labelledby="h-zwei">
       <span class="naht" aria-hidden="true"></span>
       <div class="inhalt seg-grid">
-        <h2 id="h-zwei" class="spalte-voll">Die zwei</h2>
-        <article class="person">
-          <img src="img/chris-800.webp"
-               srcset="img/chris-480.webp 480w, img/chris-800.webp 800w"
-               sizes="(min-width: 1024px) 440px, calc(100vw - 68px)"
-               width="800" height="1067" loading="lazy" decoding="async"
-               alt="Porträt von Chris Steiner">
+        <h2 id="h-zwei" class="spalte-voll" data-reveal>Die Dealmaker</h2>
+        <article class="person" data-reveal>
+          <div class="foto"><div class="foto-innen">
+            <img src="img/chris-800.webp"
+                 srcset="img/chris-480.webp 480w, img/chris-800.webp 800w"
+                 sizes="(min-width: 1024px) 440px, calc(100vw - 68px)"
+                 width="800" height="1067" loading="lazy" decoding="async"
+                 alt="Porträt von Chris Steiner">
+          </div></div>
           <p class="mono label">Kanal L</p>
           <h3>Chris Steiner</h3>
           <p class="rolle">Unternehmer, Mentor, Speaker</p>
@@ -126,12 +126,14 @@
           <a class="ig" href="https://www.instagram.com/chris_steiner/" target="_blank" rel="noopener">@chris_steiner</a>
           <p class="seite"><span class="gedimmt">Seine Seite der Sache:</span> Struktur, Systeme, Skalierung, Führung.</p>
         </article>
-        <article class="person">
-          <img src="img/philipp-800.webp"
-               srcset="img/philipp-480.webp 480w, img/philipp-800.webp 800w"
-               sizes="(min-width: 1024px) 440px, calc(100vw - 68px)"
-               width="800" height="1067" loading="lazy" decoding="async"
-               alt="Porträt von Philipp Kuhn">
+        <article class="person" data-reveal>
+          <div class="foto"><div class="foto-innen">
+            <img src="img/philipp-800.webp"
+                 srcset="img/philipp-480.webp 480w, img/philipp-800.webp 800w"
+                 sizes="(min-width: 1024px) 440px, calc(100vw - 68px)"
+                 width="800" height="1067" loading="lazy" decoding="async"
+                 alt="Porträt von Philipp Kuhn">
+          </div></div>
           <p class="mono label">Kanal R</p>
           <h3>Philipp Kuhn</h3>
           <p class="rolle">Keynote Speaker, Mentor, Sales-Coach</p>
@@ -142,7 +144,7 @@
             <li>Vertriebsteam mit achtstelligen Umsätzen</li>
             <li>Two Comma Club C Award 2024</li>
           </ul>
-          <a class="ig" href="[[INSTAGRAM-PHILIPP]]" target="_blank" rel="noopener" aria-label="Philipp Kuhn auf Instagram">Instagram</a>
+          <a class="ig" href="https://www.instagram.com/philipp_k/" target="_blank" rel="noopener">@philipp_k</a>
           <p class="seite"><span class="gedimmt">Seine Seite der Sache:</span> Verkaufen als Handwerk und Persönlichkeitsentwicklung, nicht als Trickkiste.</p>
         </article>
       </div>
@@ -157,8 +159,8 @@
       </div>
       <div class="inhalt seg-grid">
         <div class="spalte">
-          <h2 id="h-acht">Acht Jahre</h2>
-          <p class="hero-text">Philipp war Spitzenverkäufer in Chris’ Unternehmen. Daraus wurden acht Jahre gemeinsame Arbeit. Seit Anfang 2026 sprechen die beiden gemeinsam im Dealmaker Podcast.</p>
+          <h2 id="h-acht" data-reveal>Acht Jahre</h2>
+          <p class="hero-text" data-reveal>Philipp war Spitzenverkäufer in Chris’ Unternehmen. Daraus wurden acht Jahre gemeinsame Arbeit. Seit Anfang 2026 sprechen die beiden gemeinsam im Dealmaker Podcast.</p>
         </div>
       </div>
     </section>
@@ -167,11 +169,11 @@
       <span class="naht" aria-hidden="true"></span>
       <div class="inhalt seg-grid">
         <div class="spalte">
-          <h2 id="h-hoeren">Reinhören</h2>
-          <p class="hero-text">Neue Folgen mehrmals pro Woche.</p>
+          <h2 id="h-hoeren" data-reveal>Reinhören</h2>
+          <p class="hero-text" data-reveal>Neue Folgen mehrmals pro Woche.</p>
         </div>
         <div class="spalte">
-          <ul class="plattformen" role="list">
+          <ul class="plattformen" role="list" data-reveal>
             <li>
               <a class="plattform" href="[[YOUTUBE-KANAL-URL]]" target="_blank" rel="noopener"
                  aria-label="Dealmaker Podcast auf YouTube ansehen"
@@ -208,13 +210,20 @@
 
   <footer>
     <div class="footer-inhalt">
-      <ul class="footer-links" role="list">
-        <li><a href="https://www.instagram.com/chris_steiner/" target="_blank" rel="noopener">Chris auf Instagram</a></li>
-        <li><a href="[[INSTAGRAM-PHILIPP]]" target="_blank" rel="noopener">Philipp auf Instagram</a></li>
-        <li><a href="impressum.html">Impressum</a></li>
-        <li><a href="datenschutz.html">Datenschutz</a></li>
-      </ul>
-      <p class="copyright">© 2026 Dealmaker Podcast</p>
+      <div class="footer-marke" data-reveal>
+        <span class="licht licht-ende" aria-hidden="true"></span>
+        <!-- [[LOGO-DEALMAKER]]: Sobald die Logodatei da ist, ersetzt sie diesen Schriftzug als <img>. -->
+        <p class="marke">Dealmaker Podcast</p>
+      </div>
+      <div class="footer-zeile">
+        <ul class="footer-links" role="list">
+          <li><a href="https://www.instagram.com/chris_steiner/" target="_blank" rel="noopener">Chris auf Instagram</a></li>
+          <li><a href="https://www.instagram.com/philipp_k/" target="_blank" rel="noopener">Philipp auf Instagram</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+        <p class="copyright">© 2026 Dealmaker Podcast</p>
+      </div>
     </div>
   </footer>
 

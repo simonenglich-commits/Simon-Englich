@@ -8,7 +8,7 @@ Statische Ein-Seiten-Site für die Instagram-Bio. Vanilla HTML/CSS/JS, kein Buil
 |---|---|
 | `index.html` | Die Seite |
 | `styles.css` | Alle Styles, Tokens in `:root` |
-| `app.js` | Klick-Tracking und Spotify-Embed nach Klick, sonst nichts |
+| `app.js` | Klick-Tracking, Spotify-Embed nach Klick, Scroll-Reveals, Gold-Swipe beim Klick, leichter Foto-Parallax |
 | `impressum.html`, `datenschutz.html` | Rechtsseiten, Inhalte teils Platzhalter |
 | `fonts/` | Archivo 700 (wdth 112), Switzer 400/500, Martian Mono 500 (semi-condensed), woff2, latin subsettet |
 | `img/` | Platzhalterfotos, OG-Bild-Platzhalter |
@@ -20,7 +20,7 @@ Statische Ein-Seiten-Site für die Instagram-Bio. Vanilla HTML/CSS/JS, kein Buil
 | `[[YOUTUBE-KANAL-URL]]` | `index.html`, 2× (`href` der YouTube-Links) | Die URL des YouTube-Kanals |
 | `[[FOTO-CHRIS]]` | ersetzt `img/chris-480.webp` und `img/chris-800.webp` | Porträt Chris Steiner, WebP, 3:4 hochkant, mind. 800×1067 (plus 480×640-Variante) |
 | `[[FOTO-PHILIPP]]` | ersetzt `img/philipp-480.webp` und `img/philipp-800.webp` | Porträt Philipp Kuhn, WebP, 3:4 hochkant, mind. 800×1067 (plus 480×640-Variante) |
-| `[[INSTAGRAM-PHILIPP]]` | `index.html`, 2× (`href` Personenblock und Footer) | Instagram-URL von Philipp Kuhn |
+| `[[LOGO-DEALMAKER]]` | `index.html` (Footer, siehe Kommentar) | Logodatei des Podcasts, ersetzt den Schriftzug im Footer-Abschluss |
 | `[[IMPRESSUM-DATEN]]` | `impressum.html`, `datenschutz.html` | Medieninhaber, Anschrift, Kontakt, UID, Firmenbuch und Gericht, Kammer, Gewerbe, Aufsichtsbehörde, Blattlinie, Hosting-Anbieter |
 | `[[OG-BILD]]` | ersetzt `img/og.jpg` | 1200×630, JPG oder PNG, unter 300 kB: beide Gesichter oder das Podcast-Artwork, Schriftzug „Dealmaker Podcast“ lesbar auf Schwarz |
 | `[[SEITEN-URL]]` | `index.html` (`og:url`, `og:image`) | Die endgültige Domain, absolut, mit `https://` |
