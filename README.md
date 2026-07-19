@@ -13,17 +13,16 @@ Statische Ein-Seiten-Site für die Instagram-Bio. Vanilla HTML/CSS/JS, kein Buil
 | `fonts/` | Archivo 700 (wdth 112), Switzer 400/500, Martian Mono 500 (semi-condensed), woff2, latin subsettet |
 | `img/` | Platzhalterfotos, OG-Bild-Platzhalter |
 
-## Platzhalter, die noch echte Inhalte brauchen
+## Stand der Inhalte
+
+Eingesetzt: YouTube-Kanal (`@dealmakerpodcastofficial`), echte Porträts von Chris und Philipp (WebP, 3:4), das Podcast-Logo im Footer (Schwarz ausgekeyt, transparent auf dem Seitenschwarz), Philipps Instagram (`@philipp_k`). `og:url`/`og:image` zeigen vorläufig auf `https://podcast.simon-englich.workers.dev` und werden auf die endgültige Domain umgestellt, sobald sie steht.
+
+Noch offen:
 
 | Platzhalter | Wo | Was hin muss |
 |---|---|---|
-| `[[YOUTUBE-KANAL-URL]]` | `index.html`, 2× (`href` der YouTube-Links) | Die URL des YouTube-Kanals |
-| `[[FOTO-CHRIS]]` | ersetzt `img/chris-480.webp` und `img/chris-800.webp` | Porträt Chris Steiner, WebP, 3:4 hochkant, mind. 800×1067 (plus 480×640-Variante) |
-| `[[FOTO-PHILIPP]]` | ersetzt `img/philipp-480.webp` und `img/philipp-800.webp` | Porträt Philipp Kuhn, WebP, 3:4 hochkant, mind. 800×1067 (plus 480×640-Variante) |
-| `[[LOGO-DEALMAKER]]` | `index.html` (Footer, siehe Kommentar) | Logodatei des Podcasts, ersetzt den Schriftzug im Footer-Abschluss |
 | `[[IMPRESSUM-DATEN]]` | `impressum.html`, `datenschutz.html` | Medieninhaber, Anschrift, Kontakt, UID, Firmenbuch und Gericht, Kammer, Gewerbe, Aufsichtsbehörde, Blattlinie, Hosting-Anbieter |
-| `[[OG-BILD]]` | ersetzt `img/og.jpg` | 1200×630, JPG oder PNG, unter 300 kB: beide Gesichter oder das Podcast-Artwork, Schriftzug „Dealmaker Podcast“ lesbar auf Schwarz |
-| `[[SEITEN-URL]]` | `index.html` (`og:url`, `og:image`) | Die endgültige Domain, absolut, mit `https://` |
+| `img/og.jpg` (optional) | Social-Vorschau | 1200×630, unter 300 kB. Aktuell markenkonformes Übergangsbild; kann später durch ein Motiv mit beiden Gesichtern ersetzt werden. |
 
 ## Schriften
 

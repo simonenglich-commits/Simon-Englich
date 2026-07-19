@@ -552,22 +552,13 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 20px 0 36px;
+  padding: 24px 0 40px;
 }
 
-.footer-marke .licht-ende {
-  opacity: 0;
-  animation: licht-puls 3s ease-in-out 0.3s infinite;
-}
-
-.marke {
-  font-family: var(--schrift-display);
-  font-weight: 700;
-  font-size: clamp(1.5rem, 5.5vw, 2rem);
-  line-height: 1;
-  color: var(--weiss);
-  text-align: center;
+.marke-logo {
+  width: min(300px, 72vw);
+  height: auto;
+  display: block;
 }
 
 .footer-links {
@@ -774,14 +765,12 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .naht-hero,
   .licht,
-  .footer-marke .licht-ende,
   .hero .plattform,
   .plattform.klick-swipe::after {
     animation: none;
   }
 
   .licht,
-  .footer-marke .licht-ende,
   .hero .plattform {
     opacity: 1;
   }
