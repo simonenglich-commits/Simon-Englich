@@ -22,7 +22,8 @@ Noch offen:
 | Platzhalter | Wo | Was hin muss |
 |---|---|---|
 | `[[IMPRESSUM-DATEN]]` | `impressum.html`, `datenschutz.html` | Medieninhaber, Anschrift, Kontakt, UID, Firmenbuch und Gericht, Kammer, Gewerbe, Aufsichtsbehörde, Blattlinie, Hosting-Anbieter |
-| `img/og.jpg` (optional) | Social-Vorschau | 1200×630, unter 300 kB. Aktuell markenkonformes Übergangsbild; kann später durch ein Motiv mit beiden Gesichtern ersetzt werden. |
+| Bewerbung-Zieladresse | `bewerbung.html`, Attribut `data-ziel` | Aktuell Platzhalter `bewerbung@dealmakerpodcast.at`. Das Formular baut eine mailto-Nachricht an diese Adresse; hier die echte Inbox eintragen. |
+| Aktuelle Folgen | eigene Sektion, noch nicht gebaut | Die letzten sechs YouTube-Folgen als anklickbare Thumbnails. Braucht die sechs Video-Links; Thumbnails werden im Browser des Besuchers von YouTube geladen. |
 
 ## Schriften
 

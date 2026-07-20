@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de-AT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Als Gast bewerben: Dealmaker Podcast</title>
+  <meta name="description" content="Bewirb dich als Gast im Dealmaker Podcast. Erzähl uns, wer du bist und worüber du sprechen willst.">
+  <meta name="theme-color" content="#0C0A07">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="unterseite">
+
+  <div class="seg">
+    <span class="naht" aria-hidden="true"></span>
+    <div class="inhalt">
+      <header>
+        <a class="zurueck" href="index.html">Zurück zur Startseite</a>
+        <h1>Als Gast bewerben</h1>
+        <p class="intro">Sei Gast im Dealmaker Podcast. Erzähl uns kurz, wer du bist und worüber du sprechen willst. Wenn es passt, melden wir uns.</p>
+      </header>
+      <main>
+        <form class="formular" id="bewerbung-form" data-ziel="bewerbung@dealmakerpodcast.at" novalidate>
+          <div class="feld">
+            <label for="f-name">Name <span class="pflicht" aria-hidden="true">*</span></label>
+            <input type="text" id="f-name" name="name" autocomplete="name" required placeholder="Vor- und Nachname">
+          </div>
+          <div class="feld">
+            <label for="f-email">E-Mail <span class="pflicht" aria-hidden="true">*</span></label>
+            <input type="email" id="f-email" name="email" autocomplete="email" required placeholder="name@beispiel.at">
+          </div>
+          <div class="feld">
+            <label for="f-telefon">Telefon <span class="pflicht" aria-hidden="true">*</span></label>
+            <input type="tel" id="f-telefon" name="telefon" autocomplete="tel" required placeholder="+43 …">
+          </div>
+          <div class="feld">
+            <label for="f-instagram">Instagram</label>
+            <input type="text" id="f-instagram" name="instagram" placeholder="@deinname">
+          </div>
+          <div class="feld">
+            <label for="f-rolle">Das machst du <span class="pflicht" aria-hidden="true">*</span></label>
+            <input type="text" id="f-rolle" name="rolle" required placeholder="Unternehmen, Rolle, Branche">
+          </div>
+          <div class="feld">
+            <label for="f-thema">Darüber willst du sprechen <span class="pflicht" aria-hidden="true">*</span></label>
+            <textarea id="f-thema" name="thema" required placeholder="Dein Thema, dein größter Deal, deine Geschichte. Ein paar Sätze reichen."></textarea>
+          </div>
+          <label class="zustimmung">
+            <input type="checkbox" name="zustimmung" required>
+            <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Bewerbung verwendet werden. Es gilt die <a href="datenschutz.html">Datenschutzerklärung</a>.</span>
+          </label>
+          <button type="submit" class="knopf absenden">Bewerbung absenden</button>
+        </form>
+
+        <div class="form-danke" id="form-danke" role="status">
+          <p>Fast geschafft.</p>
+          <p>Deine E-Mail mit allen Angaben öffnet sich gerade. Schick sie mit einem Tipp ab, dann ist deine Bewerbung bei uns. Es wird nichts auf dieser Seite gespeichert.</p>
+        </div>
+
+        <noscript>
+          <p class="intro">Schreib uns direkt an <a href="mailto:bewerbung@dealmakerpodcast.at">bewerbung@dealmakerpodcast.at</a> mit deinem Namen, deiner Telefonnummer und deinem Thema.</p>
+        </noscript>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

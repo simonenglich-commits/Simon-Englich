@@ -55,6 +55,36 @@
     });
   }
 
+  /* Bewerbungsformular: baut eine fertige E-Mail, speichert nichts */
+  var form = document.getElementById("bewerbung-form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      var daten = new FormData(form);
+      var ziel = form.getAttribute("data-ziel");
+      var name = (daten.get("name") || "").trim();
+      var betreff = "Bewerbung Dealmaker Podcast" + (name ? " — " + name : "");
+      var zeilen = [
+        "Name: " + (daten.get("name") || ""),
+        "E-Mail: " + (daten.get("email") || ""),
+        "Telefon: " + (daten.get("telefon") || ""),
+        "Instagram: " + (daten.get("instagram") || ""),
+        "Das mache ich: " + (daten.get("rolle") || ""),
+        "",
+        "Darüber will ich sprechen:",
+        (daten.get("thema") || "")
+      ];
+      var url = "mailto:" + ziel +
+        "?subject=" + encodeURIComponent(betreff) +
+        "&body=" + encodeURIComponent(zeilen.join("\r\n"));
+      var danke = document.getElementById("form-danke");
+      if (danke) danke.classList.add("an");
+      track("bewerbung_absenden", { plattform: null, position: "bewerbung" });
+      window.location.href = url;
+    });
+  }
+
   /* Sanfte Scroll-Reveals, gestaffelt über data-delay */
   var verdeckte = document.querySelectorAll("[data-reveal]");
   if (!ruhig && "IntersectionObserver" in window) {

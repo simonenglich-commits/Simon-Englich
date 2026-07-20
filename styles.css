@@ -490,6 +490,42 @@ main > .seg:first-child {
   color: var(--weiss-gedimmt);
 }
 
+/* ---------- Gast werden: CTA ---------- */
+
+.gast-knopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 60px;
+  margin-top: 24px;
+  padding: 0 22px;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  color: var(--weiss);
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.12s ease, background-color 0.12s ease,
+              transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gast-knopf .pfeil {
+  flex: none;
+  color: var(--gold);
+  transition: transform 0.2s ease;
+}
+
+.gast-knopf:hover {
+  border-color: var(--gold-hell);
+  background: var(--schwarz-erhoeht);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(201, 166, 107, 0.10);
+}
+
+.gast-knopf:hover .pfeil {
+  transform: translateX(4px);
+}
+
 /* ---------- Die Dealmaker ---------- */
 
 .person {
@@ -737,6 +773,121 @@ footer {
   margin-top: 36px;
   font-size: 15px;
   color: var(--weiss-gedimmt);
+}
+
+/* ---------- Bewerbungsformular ---------- */
+
+.intro {
+  margin-top: 12px;
+  max-width: 58ch;
+}
+
+.formular {
+  margin-top: 32px;
+  max-width: 560px;
+  display: grid;
+  gap: 20px;
+}
+
+.feld {
+  display: grid;
+  gap: 8px;
+}
+
+.feld label {
+  font-family: var(--schrift-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--weiss-gedimmt);
+}
+
+.feld label .pflicht {
+  color: var(--gold);
+}
+
+.feld input,
+.feld textarea {
+  width: 100%;
+  padding: 13px 14px;
+  min-height: 50px;
+  background: var(--schwarz-erhoeht);
+  border: 1px solid var(--schwarz-linie);
+  border-radius: 2px;
+  color: var(--weiss);
+  font-family: var(--schrift-text);
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border-color 0.15s ease;
+}
+
+.feld textarea {
+  min-height: 128px;
+  resize: vertical;
+}
+
+.feld input:focus,
+.feld textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.feld input::placeholder,
+.feld textarea::placeholder {
+  color: #6F6A61;
+}
+
+.zustimmung {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--weiss-gedimmt);
+}
+
+.zustimmung input {
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  flex: none;
+  accent-color: var(--gold);
+}
+
+.zustimmung a {
+  color: var(--gold);
+}
+
+.absenden {
+  justify-content: center;
+  min-height: 56px;
+  font-size: 17px;
+}
+
+.form-danke {
+  display: none;
+  margin-top: 24px;
+  padding: 20px 22px;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  background: var(--schwarz-erhoeht);
+  max-width: 560px;
+}
+
+.form-danke.an {
+  display: block;
+}
+
+.form-danke p {
+  margin-top: 6px;
+  color: var(--weiss-gedimmt);
+}
+
+.form-danke p:first-child {
+  margin-top: 0;
+  color: var(--weiss);
+  font-weight: 500;
 }
 
 /* ---------- Desktop: die Naht wird zur Achse ---------- */
