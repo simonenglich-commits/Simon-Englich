@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://podcast.simon-englich.workers.dev/img/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Dealmaker Podcast, Schriftzug auf schwarzem Grund mit goldener Linie und Aufnahmelicht">
+  <meta property="og:image:alt" content="Chris Steiner und Philipp Kuhn im Studio, darunter der Schriftzug Dealmaker Podcast">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -26,6 +26,8 @@
   <link rel="preload" href="fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/switzer-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" imagesrcset="img/buehne-mobil-480.webp 480w, img/buehne-mobil-720.webp 720w, img/buehne-mobil-940.webp 940w" imagesizes="100vw" media="(max-width: 1023.9px)">
+  <link rel="preload" as="image" imagesrcset="img/buehne-1000.webp 1000w, img/buehne-1440.webp 1440w" imagesizes="100vw" media="(min-width: 1024px)">
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add("js")</script>
   <script src="app.js" defer></script>
@@ -34,14 +36,22 @@
 
   <header class="seg hero">
     <span class="naht naht-hero" aria-hidden="true"></span>
-    <div class="inhalt seg-grid">
-      <div class="spalte">
-        <p class="mono sendung"><span class="licht" aria-hidden="true"></span>Auf Sendung</p>
+    <p class="mono sendung"><span class="licht" aria-hidden="true"></span>Auf Sendung</p>
+    <div class="buehne">
+      <picture class="buehne-rahmen">
+        <source media="(min-width: 1024px)" srcset="img/buehne-1000.webp 1000w, img/buehne-1440.webp 1440w" sizes="100vw">
+        <img class="buehne-bild" src="img/buehne-mobil-720.webp"
+             srcset="img/buehne-mobil-480.webp 480w, img/buehne-mobil-720.webp 720w, img/buehne-mobil-940.webp 940w"
+             sizes="100vw" width="940" height="560"
+             alt="Chris Steiner und Philipp Kuhn im Studio des Dealmaker Podcasts"
+             fetchpriority="high" decoding="async">
+      </picture>
+      <span class="buehne-schleier" aria-hidden="true"></span>
+    </div>
+    <div class="inhalt held-inhalt">
+      <div class="held-block">
         <h1>Dealmaker Podcast</h1>
-        <p class="hero-text">Der Shortcut zu Business, Finanzen und persönlichem Wachstum. Ohne Gelaber, mit Klartext.</p>
-        <p class="mono statzeile">Neue Folgen mehrmals pro Woche</p>
-      </div>
-      <div class="spalte">
+        <p class="hero-text held-text">Der Shortcut zu Business, Finanzen und persönlichem Wachstum. Ohne Gelaber, mit Klartext.</p>
         <ul class="plattformen" role="list">
           <li>
             <a class="plattform" href="https://www.youtube.com/@dealmakerpodcastofficial" target="_blank" rel="noopener"
@@ -77,29 +87,6 @@
 
   <main>
 
-    <section class="seg" aria-labelledby="h-podcast">
-      <span class="naht" aria-hidden="true"></span>
-      <div class="inhalt seg-grid">
-        <div class="spalte">
-          <h2 id="h-podcast" data-reveal>Der Podcast</h2>
-          <p class="hero-text" data-reveal>Systeme, die Geld einbringen. Mindset, Sales und Weiterbildung, als Video-Podcast.</p>
-        </div>
-        <div class="spalte">
-          <ul class="themen daten" role="list" data-reveal>
-            <li>8 Jahre gemeinsame Erfahrung</li>
-            <li>Im Schnitt 37 Minuten pro Folge</li>
-            <li>Seit Anfang 2026</li>
-          </ul>
-          <div class="embed" id="spotify-embed" data-reveal>
-            <div class="embed-platzhalter">
-              <button type="button" class="knopf" id="spotify-laden">Folgen anhören</button>
-              <p class="hinweis">Beim Laden werden Daten an Spotify übertragen.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="seg" aria-labelledby="h-zwei">
       <span class="naht" aria-hidden="true"></span>
       <div class="inhalt seg-grid">
@@ -122,11 +109,11 @@
             <li>10.000+ Menschen in die Selbstständigkeit</li>
             <li>2× Fitness-10-Kampf-Weltmeister</li>
           </ul>
-          <p class="zitat">„Dare to stand out.“</p>
+          <p class="zitat" data-reveal>„Dare to stand out.“</p>
           <a class="ig" href="https://www.instagram.com/chris_steiner/" target="_blank" rel="noopener">@chris_steiner</a>
           <p class="seite"><span class="gedimmt">Seine Seite der Sache:</span> Struktur, Systeme, Skalierung, Führung.</p>
         </article>
-        <article class="person" data-reveal>
+        <article class="person" data-reveal data-delay="90">
           <div class="foto"><div class="foto-innen">
             <img src="img/philipp-800.webp"
                  srcset="img/philipp-480.webp 480w, img/philipp-800.webp 800w"
@@ -159,8 +146,31 @@
       </div>
       <div class="inhalt seg-grid">
         <div class="spalte">
-          <h2 id="h-acht" data-reveal>Acht Jahre</h2>
+          <h2 id="h-acht" class="sr-nur">Acht Jahre</h2>
           <p class="hero-text" data-reveal>Philipp war Spitzenverkäufer in Chris’ Unternehmen. Daraus wurden acht Jahre gemeinsame Arbeit. Seit Anfang 2026 sprechen die beiden gemeinsam im Dealmaker Podcast.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seg" aria-labelledby="h-podcast">
+      <span class="naht" aria-hidden="true"></span>
+      <div class="inhalt seg-grid">
+        <div class="spalte">
+          <h2 id="h-podcast" data-reveal>Der Podcast</h2>
+          <p class="hero-text" data-reveal data-delay="60">Systeme, die Geld einbringen. Mindset, Sales und Weiterbildung, als Video-Podcast.</p>
+        </div>
+        <div class="spalte">
+          <ul class="themen daten" role="list" data-reveal>
+            <li>8 Jahre gemeinsame Erfahrung</li>
+            <li>Im Schnitt 37 Minuten pro Folge</li>
+            <li>Seit Anfang 2026</li>
+          </ul>
+          <div class="embed" id="spotify-embed" data-reveal data-delay="90">
+            <div class="embed-platzhalter">
+              <button type="button" class="knopf" id="spotify-laden">Folgen anhören</button>
+              <p class="hinweis">Beim Laden werden Daten an Spotify übertragen.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -170,10 +180,10 @@
       <div class="inhalt seg-grid">
         <div class="spalte">
           <h2 id="h-hoeren" data-reveal>Reinhören</h2>
-          <p class="hero-text" data-reveal>Neue Folgen mehrmals pro Woche.</p>
+          <p class="hero-text" data-reveal data-delay="60">Neue Folgen mehrmals pro Woche.</p>
         </div>
         <div class="spalte">
-          <ul class="plattformen" role="list" data-reveal>
+          <ul class="plattformen" role="list" data-reveal data-delay="90">
             <li>
               <a class="plattform" href="https://www.youtube.com/@dealmakerpodcastofficial" target="_blank" rel="noopener"
                  aria-label="Dealmaker Podcast auf YouTube ansehen"

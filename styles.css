@@ -74,6 +74,7 @@
 
   --naht-x: 24px;
   --naht-staerke: 1.5px;
+  --kurve: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 /* ---------- Grund ---------- */
@@ -100,6 +101,18 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Filmkorn über der ganzen Seite, statisch und dezent */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23k)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }
 
 h1, h2, h3 {
@@ -162,6 +175,16 @@ a {
   color: var(--weiss-gedimmt);
 }
 
+.sr-nur {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* ---------- Naht und Sektionen ---------- */
 
 .seg {
@@ -185,8 +208,11 @@ main > .seg:first-child {
 }
 
 .naht-hero {
+  bottom: auto;
+  height: calc(var(--buehne-h) + 36px);
+  z-index: 2;
   transform-origin: top center;
-  animation: naht-ziehen 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: naht-ziehen 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both;
 }
 
 @keyframes naht-ziehen {
@@ -194,23 +220,46 @@ main > .seg:first-child {
   to   { transform: scaleY(1); }
 }
 
-/* ---------- Hero ---------- */
+/* Naht zieht sich in jeder Sektion beim ersten Sichtbarwerden */
+.js main .seg .naht {
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 0.9s var(--kurve) 0.05s;
+}
+
+.js main .seg.naht-an .naht {
+  transform: scaleY(1);
+}
+
+.js .naht-verzweigung {
+  opacity: 0;
+  transition: opacity 0.9s ease 0.15s;
+}
+
+.js .seg.naht-an .naht-verzweigung {
+  opacity: 1;
+}
+
+/* ---------- Hero: die Bühne ---------- */
 
 .hero {
+  --buehne-h: clamp(215px, 36svh, 330px);
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 28px;
-  padding-bottom: 32px;
+  padding: 0;
 }
 
 .sendung {
+  position: absolute;
+  z-index: 3;
+  top: max(20px, env(safe-area-inset-top));
+  left: 48px;
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--gold);
+  color: var(--gold-hell);
 }
 
 .licht {
@@ -228,17 +277,80 @@ main > .seg:first-child {
   50%      { opacity: 1; }
 }
 
+.buehne {
+  position: relative;
+  height: var(--buehne-h);
+  overflow: hidden;
+  background: var(--schwarz);
+}
+
+.buehne-rahmen {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+  transform: scale(1.07);
+  animation: buehne-auf 1.1s var(--kurve) 0.05s forwards;
+  will-change: transform, opacity;
+}
+
+.buehne-bild {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 35% 20%;
+  transform: translateY(var(--par, 0px)) scale(1.05);
+}
+
+@keyframes buehne-auf {
+  to { opacity: 1; transform: scale(1); }
+}
+
+.buehne-schleier {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(130% 90% at 50% 26%, rgba(12, 10, 7, 0) 52%, rgba(12, 10, 7, 0.5) 100%),
+    linear-gradient(180deg, rgba(12, 10, 7, 0.5) 0%, rgba(12, 10, 7, 0) 24%, rgba(12, 10, 7, 0) 52%, rgba(12, 10, 7, 0.86) 84%, #0C0A07 100%);
+}
+
+.held-inhalt {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: -112px;
+  padding: 0 20px max(24px, env(safe-area-inset-bottom)) 48px;
+}
+
+.held-block {
+  margin-block: auto;
+  padding-top: 8px;
+}
+
 .hero h1 {
-  margin-top: 18px;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: auftauchen 0.55s var(--kurve) 0.25s forwards;
+}
+
+.held-text {
+  margin-top: 10px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: auftauchen 0.55s var(--kurve) 0.34s forwards;
+}
+
+@keyframes auftauchen {
+  to { opacity: 1; transform: none; }
 }
 
 .hero-text {
   margin-top: 18px;
-}
-
-.statzeile {
-  margin-top: 16px;
-  color: var(--weiss-gedimmt);
 }
 
 /* ---------- Plattform-Links ---------- */
@@ -250,7 +362,7 @@ main > .seg:first-child {
 }
 
 .hero .plattformen {
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .plattform {
@@ -263,7 +375,7 @@ main > .seg:first-child {
   padding: 0 16px;
   border: 1px solid var(--gold);
   border-radius: 2px;
-  background: transparent;
+  background: rgba(12, 10, 7, 0.55);
   color: var(--weiss);
   font-weight: 500;
   text-decoration: none;
@@ -312,16 +424,21 @@ main > .seg:first-child {
   margin-left: auto;
   flex: none;
   color: var(--gold);
+  transition: transform 0.2s ease;
+}
+
+.plattform:hover .pfeil {
+  transform: translateX(4px);
 }
 
 .hero .plattform {
   opacity: 0;
-  animation: einblenden 0.4s ease-out forwards;
+  animation: einblenden 0.45s ease-out forwards;
 }
 
-.hero .plattformen li:nth-child(1) .plattform { animation-delay: 0.15s; }
-.hero .plattformen li:nth-child(2) .plattform { animation-delay: 0.21s; }
-.hero .plattformen li:nth-child(3) .plattform { animation-delay: 0.27s; }
+.hero .plattformen li:nth-child(1) .plattform { animation-delay: 0.46s; }
+.hero .plattformen li:nth-child(2) .plattform { animation-delay: 0.52s; }
+.hero .plattformen li:nth-child(3) .plattform { animation-delay: 0.58s; }
 
 @keyframes einblenden {
   to { opacity: 1; }
@@ -405,7 +522,7 @@ main > .seg:first-child {
   color: var(--weiss-gedimmt);
 }
 
-/* ---------- Die zwei ---------- */
+/* ---------- Die Dealmaker ---------- */
 
 .person {
   margin-top: 40px;
@@ -430,7 +547,7 @@ main > .seg:first-child {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
+  transition: transform 0.6s var(--kurve);
 }
 
 .person:hover .foto-innen img {
@@ -495,10 +612,15 @@ main > .seg:first-child {
 /* ---------- Acht Jahre: die Verzweigung ---------- */
 
 .seg-acht .inhalt {
-  min-height: 300px;
+  min-height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.seg-acht .hero-text {
+  margin-top: 0;
+  max-width: 38ch;
 }
 
 .naht-verzweigung {
@@ -532,13 +654,47 @@ main > .seg:first-child {
 
 .js [data-reveal] {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--kurve), transform 0.7s var(--kurve);
 }
 
 .js [data-reveal].sichtbar {
   opacity: 1;
   transform: none;
+}
+
+/* Überschriften wischen auf wie ein Fader: Deck-Ebene fährt nach rechts raus */
+.js h2[data-reveal] {
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  transform: translateY(10px);
+}
+
+.js h2[data-reveal]::after {
+  content: "";
+  position: absolute;
+  inset: -2%;
+  background: var(--schwarz);
+  transition: transform 0.85s cubic-bezier(0.25, 0.8, 0.25, 1) 0.05s;
+}
+
+.js h2[data-reveal].sichtbar {
+  transform: none;
+}
+
+.js h2[data-reveal].sichtbar::after {
+  transform: translateX(103%);
+}
+
+/* Das Zitat zieht sich beim Erscheinen zusammen */
+.js .zitat[data-reveal] {
+  letter-spacing: 0.08em;
+  transition: opacity 0.8s ease, transform 0.8s var(--kurve), letter-spacing 1.1s var(--kurve);
+}
+
+.js .zitat[data-reveal].sichtbar {
+  letter-spacing: 0;
 }
 
 /* ---------- Footer ---------- */
@@ -707,18 +863,48 @@ footer {
     grid-column: 1 / -1;
   }
 
+  /* Hero: Bühne voll, Titel mittig, Links in einer Reihe */
   .hero {
-    padding-top: 0;
-    padding-bottom: 0;
-    justify-content: center;
+    --buehne-h: min(62vh, 560px);
+    padding: 0;
   }
 
-  .hero .seg-grid {
+  .sendung {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 26px;
+  }
+
+  .held-inhalt {
+    margin-top: -120px;
+    padding: 0 40px 44px;
     align-items: center;
+    text-align: center;
+  }
+
+  .held-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .held-text {
+    max-width: 56ch;
   }
 
   .hero .plattformen {
-    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 280px));
+    gap: 12px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 26px;
   }
 
   .person {
@@ -726,7 +912,7 @@ footer {
   }
 
   .seg-acht .inhalt {
-    min-height: 460px;
+    min-height: 420px;
     display: grid;
     align-content: center;
   }
@@ -766,19 +952,44 @@ footer {
   .naht-hero,
   .licht,
   .hero .plattform,
+  .hero h1,
+  .held-text,
+  .buehne-rahmen,
   .plattform.klick-swipe::after {
     animation: none;
   }
 
   .licht,
-  .hero .plattform {
+  .hero .plattform,
+  .hero h1,
+  .held-text,
+  .buehne-rahmen {
     opacity: 1;
+    transform: none;
+  }
+
+  .js main .seg .naht {
+    transform: scaleY(1);
+    transition: none;
+  }
+
+  .js .naht-verzweigung {
+    opacity: 1;
+    transition: none;
   }
 
   .js [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .js h2[data-reveal]::after {
+    content: none;
+  }
+
+  .js .zitat[data-reveal] {
+    letter-spacing: 0;
   }
 
   .plattform:hover {
@@ -790,7 +1001,8 @@ footer {
     transform: none;
   }
 
-  .foto-innen {
+  .foto-innen,
+  .buehne-bild {
     transform: none !important;
   }
 }

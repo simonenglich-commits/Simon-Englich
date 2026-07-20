@@ -1,4 +1,4 @@
-/* Dealmaker Podcast — Klick-Tracking, Spotify-Embed nach Klick, Reveals, Gold-Swipe, leichter Parallax. */
+/* Dealmaker Podcast — Klick-Tracking, Spotify-Embed nach Klick, Reveals, Naht-Zug, Gold-Swipe, leichter Parallax. */
 (function () {
   "use strict";
 
@@ -55,29 +55,52 @@
     });
   }
 
-  /* Sanfte Scroll-Reveals */
+  /* Sanfte Scroll-Reveals, gestaffelt über data-delay */
   var verdeckte = document.querySelectorAll("[data-reveal]");
   if (!ruhig && "IntersectionObserver" in window) {
     var beobachter = new IntersectionObserver(function (eintraege) {
       eintraege.forEach(function (eintrag) {
         if (eintrag.isIntersecting) {
-          eintrag.target.classList.add("sichtbar");
-          beobachter.unobserve(eintrag.target);
+          var el = eintrag.target;
+          el.style.transitionDelay = (parseInt(el.getAttribute("data-delay"), 10) || 0) + "ms";
+          el.classList.add("sichtbar");
+          beobachter.unobserve(el);
         }
       });
-    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.1 });
+    }, { rootMargin: "0px 0px -4% 0px", threshold: 0.05 });
     verdeckte.forEach(function (el) { beobachter.observe(el); });
   } else {
     verdeckte.forEach(function (el) { el.classList.add("sichtbar"); });
   }
 
-  /* Leichter Parallax auf den Fotos, nur Transforms */
+  /* Naht zieht sich pro Sektion, sobald sie ins Bild kommt */
+  var sektionen = document.querySelectorAll("main .seg");
+  if (!ruhig && "IntersectionObserver" in window) {
+    var nahtBeobachter = new IntersectionObserver(function (eintraege) {
+      eintraege.forEach(function (eintrag) {
+        if (eintrag.isIntersecting) {
+          eintrag.target.classList.add("naht-an");
+          nahtBeobachter.unobserve(eintrag.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    sektionen.forEach(function (s) { nahtBeobachter.observe(s); });
+  } else {
+    sektionen.forEach(function (s) { s.classList.add("naht-an"); });
+  }
+
+  /* Leichter Parallax: Bühne im Hero und die Porträts, nur Transforms */
+  var buehnenBild = document.querySelector(".buehne-bild");
   var fotos = Array.prototype.slice.call(document.querySelectorAll(".foto-innen"));
-  if (fotos.length && !ruhig) {
+  if ((buehnenBild || fotos.length) && !ruhig) {
     var geplant = false;
     var parallax = function () {
       geplant = false;
       var vh = window.innerHeight;
+      if (buehnenBild) {
+        var y = Math.min(window.scrollY, vh);
+        buehnenBild.style.setProperty("--par", (y * 0.18).toFixed(1) + "px");
+      }
       fotos.forEach(function (innen) {
         var r = innen.parentNode.getBoundingClientRect();
         if (r.bottom < 0 || r.top > vh) return;
